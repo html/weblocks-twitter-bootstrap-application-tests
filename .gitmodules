@@ -1,0 +1,6 @@
+[submodule "jquery-seq"]
+	path = jquery-seq
+	url = git://github.com/html/jquery-seq.git
+[submodule "weblocks-jquery"]
+	path = weblocks-jquery
+	url = git://github.com/html/weblocks-jquery.git
