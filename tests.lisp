@@ -22,3 +22,13 @@
     (sleep 1) ; waiting for dialog to do all effects
     (sample-dialog-assertions)
     (do-click-and-wait "link=Close dialog")))
+
+(deftest does-not-display-hidden-field ()
+  (with-new-or-existing-selenium-session-on-bootstrap-site 
+    (do-click-and-wait "link=Hidden field")
+    (handler-case 
+      (progn 
+        (do-get-text "css=.some-field")
+        (error "There should not be div with class some-field"))
+      (execution-error ()))
+    (do-click-and-wait "name=cancel")))

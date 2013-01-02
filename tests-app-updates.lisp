@@ -90,6 +90,18 @@
                               (lambda (&rest args)
                                          (do-choice "Test choice" (list :ok :great :good))))
 
+(defun hidden-field-demonstration-action (&rest args)
+  (do-page 
+    (make-quickform 
+      (defview 
+        nil 
+        (:caption "Form with hidden field" :type form :persistp nil)
+        (some-field 
+          :present-as hidden 
+          :writer #'identity)))))
+
+(define-bootstrap-demo-action "Hidden field" #'hidden-field-demonstration-action)
+
 (defparameter *bootstrap-site-url* "http://localhost:5555/bootstrap-app")
 
  (defmacro with-new-or-existing-selenium-session-on-bootstrap-site (&body body)
