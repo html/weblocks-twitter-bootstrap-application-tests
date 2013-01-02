@@ -86,4 +86,7 @@
             "Back"))))))
 
 (define-bootstrap-demo-action "Gridedit" #'gridedit-demonstration-action)
+(define-bootstrap-demo-action "Choices" 
+                              (lambda (&rest args)
+                                         (do-choice "Test choice" (list :ok :great :good))))
 
