@@ -90,3 +90,8 @@
                               (lambda (&rest args)
                                          (do-choice "Test choice" (list :ok :great :good))))
 
+(defparameter *bootstrap-site-url* "http://localhost:5555/bootstrap-app")
+
+ (defmacro with-new-or-existing-selenium-session-on-bootstrap-site (&body body)
+  `(let ((*site-url* *bootstrap-site-url*))
+     (with-new-or-existing-selenium-session ,@body)))

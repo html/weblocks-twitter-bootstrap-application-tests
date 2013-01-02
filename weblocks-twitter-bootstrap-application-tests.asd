@@ -9,5 +9,6 @@
   :depends-on (#:weblocks-twitter-bootstrap-application #:weblocks-selenium-tests)
   :components 
   ((:file "package")
-     (:file "tests-app-updates" :depends-on ("package"))))
+   (:file "tests-app-updates" :depends-on ("package"))
+   (:file "tests" :depends-on ("tests-app-updates"))))
 
