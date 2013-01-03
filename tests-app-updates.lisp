@@ -102,6 +102,24 @@
 
 (define-bootstrap-demo-action "Hidden field" #'hidden-field-demonstration-action)
 
+(defun checkbox-field-demonstration-action (&rest args)
+  (do-page 
+    (make-quickform 
+      (defview 
+        nil 
+        (:caption "Form with checkbox fields" :type form :persistp nil)
+        (some-field 
+          :present-as checkbox 
+          :writer #'identity)
+        (some-other-field 
+          :present-as checkbox 
+          :writer #'identity)
+        (some-another-field 
+          :present-as checkbox 
+          :writer #'identity)))))
+
+(define-bootstrap-demo-action "Checkbox fields" #'checkbox-field-demonstration-action)
+
 (defparameter *bootstrap-site-url* "http://localhost:5555/bootstrap-app")
 
  (defmacro with-new-or-existing-selenium-session-on-bootstrap-site (&body body)
