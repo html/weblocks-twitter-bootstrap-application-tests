@@ -90,6 +90,9 @@
                               (lambda (&rest args)
                                          (do-choice "Test choice" (list :ok :great :good))))
 
+(defun empty-writer (&rest args)
+  (declare (ignore args)))
+
 (defun hidden-field-demonstration-action (&rest args)
   (do-page 
     (make-quickform 
@@ -98,7 +101,7 @@
         (:caption "Form with hidden field" :type form :persistp nil)
         (some-field 
           :present-as hidden 
-          :writer #'identity)))))
+          :writer #'empty-writer)))))
 
 (define-bootstrap-demo-action "Hidden field" #'hidden-field-demonstration-action)
 
@@ -110,13 +113,13 @@
         (:caption "Form with checkbox fields" :type form :persistp nil)
         (some-field 
           :present-as checkbox 
-          :writer #'identity)
+          :writer #'empty-writer)
         (some-other-field 
           :present-as checkbox 
-          :writer #'identity)
+          :writer #'empty-writer)
         (some-another-field 
           :present-as checkbox 
-          :writer #'identity)))))
+          :writer #'empty-writer)))))
 
 (define-bootstrap-demo-action "Checkbox fields" #'checkbox-field-demonstration-action)
 

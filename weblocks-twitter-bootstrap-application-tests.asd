@@ -5,7 +5,7 @@
   :description "Demo app for weblocks-twitter-bootstrap-application"
   :author "Olexiy Zamkoviy <olexiy.z@gmail.com>"
   :license "LLGPL"
-  :version "0.0.6"
+  :version "0.0.7"
   :depends-on (#:weblocks-twitter-bootstrap-application #:weblocks-selenium-tests)
   :components 
   ((:file "package")
