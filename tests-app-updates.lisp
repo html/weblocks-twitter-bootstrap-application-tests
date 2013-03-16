@@ -6,12 +6,15 @@
 
 (defwebapp twitter-bootstrap-sample-app
            :prefix *test-webapp-prefix*
-           :description "Sample twitter bootstrap application"
+           :description "Weblocks with twitter bootstrap demo"
            :init-user-session 'init-user-session-bootstrap
            :subclasses (weblocks-twitter-bootstrap-application:twitter-bootstrap-webapp)
            :autostart t                   
            :ignore-default-dependencies nil 
            :debug t)
+
+(defmethod render-page-body :after ((app twitter-bootstrap-sample-app) body-string)
+  (weblocks-selenium-tests-app::render-apps-list))
 
 (flet ((prepend-webapp-path (value)
          (format nil "~A~A" *test-webapp-prefix* value)))
