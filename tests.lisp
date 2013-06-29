@@ -36,7 +36,7 @@
 
 (deftest shows-gridedit ()
   (with-new-or-existing-selenium-session-on-bootstrap-site
-    (delete-all 'test-model)
+    (delete-all 'test-model :store *bootstrap-tests-store*)
     (do-click-and-wait "link=Gridedit")
     (do-screen-state-test "bootstrap/gridedit" :wait-after-resize 1000)
     (do-click-and-wait "link=Back")))
