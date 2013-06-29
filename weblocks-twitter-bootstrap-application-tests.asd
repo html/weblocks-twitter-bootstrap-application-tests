@@ -6,7 +6,7 @@
   :author "Olexiy Zamkoviy <olexiy.z@gmail.com>"
   :license "LLGPL"
   :version (:read-from-file "version.lisp-expr")
-  :depends-on (#:weblocks-twitter-bootstrap-application #:weblocks-selenium-tests)
+  :depends-on (#:weblocks-twitter-bootstrap-application #:weblocks-selenium-tests #:weblocks-utils)
   :components 
   ((:file "package")
    (:file "tests-app-updates" :depends-on ("package"))

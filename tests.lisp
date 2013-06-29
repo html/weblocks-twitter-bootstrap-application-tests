@@ -36,8 +36,26 @@
 
 (deftest shows-gridedit ()
   (with-new-or-existing-selenium-session-on-bootstrap-site
+    (delete-all 'test-model)
     (do-click-and-wait "link=Gridedit")
     (do-screen-state-test "bootstrap/gridedit" :wait-after-resize 1000)
+    (do-click-and-wait "link=Back")))
+
+(deftest shows-gridedit-with-pagination ()
+  (with-new-or-existing-selenium-session-on-bootstrap-site
+    (delete-all 'test-model :store *bootstrap-tests-store*)
+
+    (loop for i from 1 to 30 do 
+          (persist-object *bootstrap-tests-store* (make-instance 'test-model :title "Test" :content "Test")))
+
+    (do-click-and-wait "link=Gridedit")
+
+    (do-screen-state-test "bootstrap/gridedit-filled-first-page" :wait-after-resize 1000)
+
+    (do-click-and-wait "css=.next-page")
+
+    (do-screen-state-test "bootstrap/gridedit-filled-last-page" :wait-after-resize 1000)
+
     (do-click-and-wait "link=Back")))
 
 (deftest shows-choices ()

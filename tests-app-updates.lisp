@@ -75,7 +75,7 @@
 
 (defun gridedit-demonstration-action (&rest args)
   (let* ((widget))
-    (setf widget (make-instance 'gridedit :data-class 'test-model))
+    (setf widget (make-instance 'gridedit :data-class 'test-model :class-store *bootstrap-tests-store*))
     (do-page 
       (list 
         (lambda (&rest args)
