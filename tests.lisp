@@ -58,6 +58,28 @@
 
     (do-click-and-wait "link=Back")))
 
+(deftest adds-items-to-gridedit-and-shows-flash ()
+  (with-new-or-existing-selenium-session-on-bootstrap-site
+    (delete-all 'test-model :store *bootstrap-tests-store*)
+
+    (do-click-and-wait "link=Gridedit")
+
+    (do-click-and-wait "name=add")
+    (do-screen-state-test "bootstrap/gridedit-add-form-1" :wait-after-resize 1000)
+    (do-type "name=title" "Test")
+    (do-type "name=content" "Test")
+    (do-click-and-wait "name=submit")
+
+    (do-click-and-wait "name=add")
+    (do-screen-state-test "bootstrap/gridedit-add-form-2" :wait-after-resize 1000)
+    (do-type "name=title" "Test")
+    (do-type "name=content" "Test")
+    (do-click-and-wait "name=submit")
+
+    (do-screen-state-test "bootstrap/gridedit-add-form-flash-showed" :wait-after-resize 1000)
+
+    (do-click-and-wait "link=Back")))
+
 (deftest shows-choices ()
   (with-new-or-existing-selenium-session-on-bootstrap-site
     (do-click-and-wait "link=Choices")
