@@ -16,21 +16,6 @@
 (defmethod render-page-body :after ((app twitter-bootstrap-sample-app) body-string)
   (weblocks-selenium-tests-app::render-apps-list))
 
-(flet ((prepend-webapp-path (value)
-         (format nil "~A~A" *test-webapp-prefix* value)))
-
-  (push (hunchentoot:create-static-file-dispatcher-and-handler 
-          (prepend-webapp-path "/pub/scripts/jquery-seq.js")
-          (merge-pathnames 
-            "jquery-seq/jquery-seq.js"
-            (asdf-system-directory :weblocks-twitter-bootstrap-application-tests))) weblocks::*dispatch-table*) 
-
-  (push (hunchentoot:create-static-file-dispatcher-and-handler 
-          (prepend-webapp-path "/pub/scripts/weblocks-jquery.js")
-          (merge-pathnames 
-            "weblocks-jquery/weblocks-jquery.js"
-            (asdf-system-directory :weblocks-twitter-bootstrap-application-tests))) weblocks::*dispatch-table*)) 
-
 (define-demo-action 
   "Bootstrap theme demos" 
   (lambda (&rest args)
@@ -91,7 +76,7 @@
 (define-bootstrap-demo-action "Gridedit" #'gridedit-demonstration-action)
 (define-bootstrap-demo-action "Choices" 
                               (lambda (&rest args)
-                                         (do-choice "Test choice" (list :ok :great :good))))
+                                (do-choice "Test choice" '((:ok . "Ok") (:great . "Great") (:good . "Good")))))
 
 (defun empty-writer (&rest args)
   (declare (ignore args)))
