@@ -97,3 +97,14 @@
     (do-click-and-wait "link=Checkbox fields")
     (do-screen-state-test "bootstrap/checkbox-fields" :wait-after-resize 1000)
     (do-click-and-wait "name=cancel")))
+
+(deftest changes-navbar-selector-tabs ()
+  (with-new-or-existing-selenium-session-on-bootstrap-site
+    (do-click-and-wait "link=Navbar selector")
+    (is (string= "First tab" (do-get-text "css=.simple-selector .composite")))
+    (do-click-and-wait "link=Second pane")
+    (is (string= "Second tab" (do-get-text "css=.simple-selector .composite")))
+    (do-click-and-wait "link=Third pane")
+    (is (string= "Third tab" (do-get-text "css=.simple-selector .composite")))
+    (do-click-and-wait "link=back")
+    (is (string= "Twitter bootstrap for weblocks demo" (do-get-text "css=h1")))))

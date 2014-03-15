@@ -111,6 +111,27 @@
 
 (define-bootstrap-demo-action "Checkbox fields" #'checkbox-field-demonstration-action)
 
+(defun navbar-selector-demonstration-action (&rest args)
+  (let ((widget))
+    (setf widget (make-instance 
+                   'composite 
+                   :widgets (list
+                              (lambda (&rest args)
+                                (with-html 
+                                  (:br)))
+                              (make-navbar-selector "test-selector"
+                                                    (list "First pane" "First tab" nil)
+                                                    (list "Second pane" "Second tab" "second")
+                                                    (list "Third pane" "Third tab" "third"))
+                              (lambda (&rest args)
+                                (with-html 
+                                  (render-link (lambda (&rest args)
+                                                 (answer widget t))
+                                               "back"))))))
+    (do-page widget)))
+
+(define-bootstrap-demo-action "Navbar selector" #'navbar-selector-demonstration-action)
+
 (defparameter *bootstrap-site-url* "http://localhost:5555/bootstrap-app")
 
 (defmacro with-new-or-existing-selenium-session-on-bootstrap-site (&body body)
